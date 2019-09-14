@@ -12,16 +12,27 @@
   <div class="countdown"></div>
   <script type="text/javascript">
     window.birthday = prompt('What is your birthday? MM/DD/YYYY')
+    console.log(window.birthday);
     // invoke displayAge once
     displayAge()
     // invoke displayAge on an interval once a second
     setInterval(displayAge, 1000)
     function displayAge(){
+      var split = window.birthday.split('/');
+      console.log(split); // ["11", "12", "1995"]
+      var month = split[0];
+      var day = split[1];
+      var year = split[2];
+      var wholeDate= year+month+day;
+      var result = moment(wholeDate, "YYYYMMDD").fromNow();
+      //moment("20111031", "YYYYMMDD").fromNow(); // 8 years ago
+      // moment("20120620", "YYYYMMDD").fromNow();
+      // moment().format("MMM Do YY");
       /* 
       Use moment() to create a new moment object from the present time
       Fix this function to display someone's exact age
       */
-      document.querySelector('.countdown').innerHTML = moment()
+      document.querySelector('.countdown').innerHTML = moment.preciseDiff(moment(), window.birthday)
     }
   </script>
 </body>
